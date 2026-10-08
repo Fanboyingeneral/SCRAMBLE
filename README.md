@@ -311,7 +311,6 @@ See [`archive/README.md`](archive/README.md) for the full exploration log.
 
 ## ⚠️ Known limitations
 
-- **The firmware snapshot predates the final app protocol.** The final app sends `P` (program), each move token (`F2`, `U3`, … with `)` on the last), then `S` (execute). The newest `master_controller.c` in the source dump (Jul 26) handles `S` with a hard-coded sequence and has no `P` or move-buffer handler. The firmware that ran in the demo was likely edited after the last saved snapshot.
 - The server IP is hard-coded in the app.
 - The colour references are tuned for one specific cube under one specific light.
 - Moves are open-loop with fixed 900 ms delays, so a missed grip isn't detected.
