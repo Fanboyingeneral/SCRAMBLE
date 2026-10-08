@@ -325,11 +325,11 @@ See [`archive/README.md`](archive/README.md) for the full exploration log.
 
 ### Team
 
-<!-- TODO: fill in names, student IDs and GitHub handles -->
-| Name | Student ID | GitHub |
-|---|---|---|
-| Sakif Naieb Raiyan | | |
-| | 2105065 | |
+| Name | Student ID |
+|---|:-:|
+| Sakif Naieb Raiyan | 2105065 |
+| Sayaad Muzahid Masfi | 2105066 |
+| Aurchi Chowdhury | 2105083 |
 
 <div align="center">
 <br>
