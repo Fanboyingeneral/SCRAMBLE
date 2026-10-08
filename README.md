@@ -33,29 +33,53 @@ The firmware is written in plain AVR C against the hardware registers, without A
 ## System architecture
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"fontSize": "15px", "lineColor": "#64748b", "edgeLabelBackground": "#ffffff", "textColor": "#0f172a"}, "flowchart": {"curve": "basis", "nodeSpacing": 28, "rankSpacing": 60, "padding": 16}}}%%
 flowchart LR
-    subgraph PHONE["Android app"]
+    subgraph PHONE["ANDROID APP"]
         direction TB
-        CAM["Camera scan<br/>3×3 overlay"] --> CONF{"Confirm face"}
-        CONF -- Retake --> CAM
-        CONF -- "Accept ×6" --> STR["54-char facelet string"]
+        CAM(["Camera scan"]) --> CONF{{"Confirm face"}}
+        CONF -. "retake" .-> CAM
+        CONF -- "accept ×6" --> STR["54-char facelet string"]
     end
 
-    subgraph LAPTOP["Solver server"]
-        KOC["Kociemba two-phase"]
-    end
-
-    subgraph RIG["Rig"]
+    subgraph LAPTOP["SOLVER SERVER"]
         direction TB
-        HC["HC-05"] --> M["ATmega32 master"]
-        M -- "4 PWM" --> TOP["4 turret servos"]
-        M -- "4 GPIO" --> S["ATmega32 slave"]
-        S -- "4 PWM" --> BASE["4 base servos"]
+        KOC[["Kociemba two-phase"]] --> SOL["≤ 20-move solution"]
     end
 
-    STR -- "HTTP GET" --> KOC
-    KOC -- "move sequence" --> PHONE
-    PHONE -- "Bluetooth SPP" --> HC
+    subgraph RIG["ROBOT RIG"]
+        direction TB
+        HC(["HC-05 Bluetooth"]) --> M["ATmega32 master"]
+        M -- "4 × PWM" --> TOP["4 turret servos · twist"]
+        M -- "4 × GPIO" --> S["ATmega32 slave"]
+        S -- "4 × PWM" --> BASE["4 base servos · grip"]
+    end
+
+    PHONE == "HTTP GET" ==> LAPTOP
+    LAPTOP == "solution" ==> PHONE
+    PHONE == "Bluetooth SPP" ==> RIG
+
+    classDef app fill:#7c3aed,stroke:#4c1d95,stroke-width:2px,color:#ffffff
+    classDef srv fill:#2563eb,stroke:#1e3a8a,stroke-width:2px,color:#ffffff
+    classDef bt fill:#0284c7,stroke:#0c4a6e,stroke-width:2px,color:#ffffff
+    classDef mcu fill:#0f766e,stroke:#134e4a,stroke-width:2px,color:#ffffff
+    classDef servo fill:#f59e0b,stroke:#b45309,stroke-width:2px,color:#1f2937
+
+    class CAM,CONF,STR app
+    class KOC,SOL srv
+    class HC bt
+    class M,S mcu
+    class TOP,BASE servo
+
+    style PHONE fill:#f5f3ff,stroke:#7c3aed,stroke-width:2px,color:#5b21b6
+    style LAPTOP fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#1e40af
+    style RIG fill:#f0fdfa,stroke:#0f766e,stroke-width:2px,color:#115e59
+
+    linkStyle 0,1,2 stroke:#7c3aed,stroke-width:2px
+    linkStyle 3 stroke:#2563eb,stroke-width:2px
+    linkStyle 4,5,6,7 stroke:#0f766e,stroke-width:2px
+    linkStyle 8,9 stroke:#2563eb,stroke-width:3px
+    linkStyle 10 stroke:#0284c7,stroke-width:3px
 ```
 
 1. **Scan.** The app guides the user through the faces in U, R, F, D, L, B order. It classifies each sticker by nearest RGB match and asks for confirmation, so a misread face can be retaken.
