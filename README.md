@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="docs/assets/banner.jpg" alt="SCRAMBLE" width="100%">
-
 # SCRAMBLE
 
 **An autonomous Rubik's Cube solver driven by two bare-metal ATmega32 microcontrollers**
+
+<img src="docs/assets/demo.gif" alt="SCRAMBLE turning a cube face" width="100%">
 
 [![Demo](https://img.shields.io/badge/Demo-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/4RdSLmTVIiQ)
 
@@ -22,9 +22,13 @@ CSE 316 · Bangladesh University of Engineering and Technology
 
 ## Overview
 
+<img src="docs/assets/banner.jpg" alt="SCRAMBLE concept render" width="340" align="right">
+
 SCRAMBLE solves a scrambled 3×3 cube with no human input beyond the initial scan. An Android app reads the cube's state through the phone camera, a laptop computes a solution of at most 20 moves using Kociemba's two-phase algorithm, and the phone relays it over Bluetooth to a rig of eight servos controlled by two ATmega32s.
 
 The firmware is written in plain AVR C against the hardware registers, without Arduino or any third-party libraries.
+
+<br clear="right">
 
 ## System architecture
 
