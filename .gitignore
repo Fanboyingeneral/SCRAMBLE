@@ -1,0 +1,33 @@
+# Android / Gradle
+.gradle/
+build/
+.kotlin/
+.idea/
+*.iml
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Kociemba solver tables (generated on first run, ~70 MB)
+solver-server/twophase/
+
+# AVR build output
+firmware/*.elf
+firmware/*.hex
+firmware/*.o
+firmware/*.map
+
+# OS / editors
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/

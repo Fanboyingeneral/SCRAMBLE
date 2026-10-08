@@ -1,0 +1,19 @@
+* text=auto
+
+gradlew      text eol=lf
+*.sh         text eol=lf
+*.bat        text eol=crlf
+
+*.stl        binary
+*.FCStd      binary
+*.pdf        binary
+*.pptx       binary
+*.jpg        binary
+*.png        binary
+*.webp       binary
+*.jar        binary
+
+# Keep vendored / non-project code out of GitHub's language stats
+solver-server/**     linguist-vendored
+archive/**           linguist-vendored
+coursework/**        linguist-vendored
