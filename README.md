@@ -14,7 +14,7 @@
 ![Python](https://img.shields.io/badge/Solver-Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Bluetooth](https://img.shields.io/badge/Link-HC--05-0082FC?style=flat-square&logo=bluetooth&logoColor=white)
 
-CSE 316 · Bangladesh University of Engineering and Technology
+CSE 316 · Microcontrollers and Microprocessors
 
 </div>
 
